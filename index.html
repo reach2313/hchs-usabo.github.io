@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HCHS USABO Club Portal</title>
+    <style>
+        :root {
+            --primary: #1a365d;
+            --secondary: #2b6cb0;
+            --accent: #319795;
+            --bg: #f7fafc;
+            --card-bg: #ffffff;
+            --text: #2d3748;
+            --light-bg: #ebf8ff;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 3rem 1.5rem;
+            text-align: center;
+        }
+
+        header h1 {
+            font-size: 2.2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 2rem 1rem;
+        }
+
+        /* Scroll-Reveal Animation */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease-out;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .card {
+            background: var(--card-bg);
+            border-radius: 8px;
+            padding: 1.8rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            border-top: 4px solid var(--secondary);
+        }
+
+        h2 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        .squad-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1rem;
+        }
+
+        .squad-card {
+            background: var(--light-bg);
+            padding: 1.2rem;
+            border-radius: 6px;
+            border-left: 4px solid var(--accent);
+        }
+
+        .squad-card h3 {
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .quiz-option {
+            display: block;
+            width: 100%;
+            padding: 0.75rem;
+            margin: 0.5rem 0;
+            background: #edf2f7;
+            border: 1px solid #cbd5e0;
+            border-radius: 4px;
+            text-align: left;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .quiz-option:hover {
+            background: #e2e8f0;
+        }
+
+        .quiz-option.correct {
+            background: #c6f6d5;
+            border-color: #38a169;
+        }
+
+        .quiz-option.incorrect {
+            background: #fed7d7;
+            border-color: #e53e3e;
+        }
+
+        #quiz-feedback {
+            margin-top: 1rem;
+            font-weight: bold;
+        }
+
+        footer {
+            text-align: center;
+            padding: 2rem;
+            background: var(--primary);
+            color: white;
+            margin-top: 3rem;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Health Careers High School USABO Club</h1>
+        <p>Advanced Life-Science Mastery & Competitive Biology Preparation</p>
+    </header>
+
+    <div class="container">
+        
+        <section class="card reveal">
+            <h2>Mission & Purpose</h2>
+            <p>The HCHS USA Biology Olympiad Club is dedicated to fostering deep life-science literacy, critical analytical thinking, and research competence. Our mission is to prepare students for national biological competitions, promote health literacy within our community, and support future clinical and academic scientific leadership.</p>
+        </section>
+
+        <section class="card reveal">
+            <h2>Operational Task Forces</h2>
+            <div class="squad-grid">
+                <div class="squad-card">
+                    <h3>USABO Contest Squad</h3>
+                    <p>Focuses on Campbell Biology mastery, high-yield practice exam breakdowns, and advanced problem-solving techniques.</p>
+                </div>
+                <div class="squad-card">
+                    <h3>Health Literacy Squad</h3>
+                    <p>Drives community impact through regional health education initiatives, workshops, and science outreach.</p>
+                </div>
+                <div class="squad-card">
+                    <h3>Resource & Web Squad</h3>
+                    <p>Curates open-source study repositories, maintains digital problem sets, and archives guest lecture materials.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="card reveal">
+            <h2>Interactive Practice Workshop</h2>
+            <p><strong>Sample Question:</strong> Which organelle is primarily responsible for lipid synthesis and drug detoxification in eukaryotic cells?</p>
+            <div id="quiz">
+                <button class="quiz-option" onclick="checkAnswer(this, false)">A) Rough Endoplasmic Reticulum</button>
+                <button class="quiz-option" onclick="checkAnswer(this, true)">B) Smooth Endoplasmic Reticulum</button>
+                <button class="quiz-option" onclick="checkAnswer(this, false)">C) Golgi Apparatus</button>
+                <button class="quiz-option" onclick="checkAnswer(this, false)">D) Lysosome</button>
+            </div>
+            <div id="quiz-feedback"></div>
+        </section>
+
+    </div>
+
+    <footer>
+        <p>&copy; Health Careers High School USABO Chapter. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Scroll Reveal Observer
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+        // Interactive Quiz Logic
+        function checkAnswer(button, isCorrect) {
+            const feedback = document.getElementById('quiz-feedback');
+            const options = document.querySelectorAll('.quiz-option');
+            
+            options.forEach(opt => {
+                opt.disabled = true;
+            });
+
+            if (isCorrect) {
+                button.classList.add('correct');
+                feedback.style.color = '#2f855a';
+                feedback.innerText = 'Correct! The Smooth Endoplasmic Reticulum handles lipid synthesis and metabolism of xenobiotics.';
+            } else {
+                button.classList.add('incorrect');
+                feedback.style.color = '#c53030';
+                feedback.innerText = 'Incorrect. The correct answer is B) Smooth Endoplasmic Reticulum.';
+            }
+        }
+    </script>
+</body>
+</html>
