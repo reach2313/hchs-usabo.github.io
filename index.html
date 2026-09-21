@@ -9,15 +9,18 @@
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   <style>
     :root {
-      --bg: #0b0f19;
-      --card-bg: rgba(17, 24, 39, 0.7);
-      --card-border: rgba(255, 255, 255, 0.08);
-      --accent: #10b981;
-      --accent-glow: rgba(16, 185, 129, 0.15);
-      --text: #f3f4f6;
-      --text-muted: #9ca3af;
-      --nav-bg: rgba(11, 15, 25, 0.85);
-      --card-hover: rgba(31, 41, 55, 0.8);
+      --bg: #f8fafc;
+      --card-bg: #ffffff;
+      --card-border: #e2e8f0;
+      --accent: #0d9488;
+      --accent-glow: #ccfbf1;
+      --accent-hover: #0f766e;
+      --text: #0f172a;
+      --text-muted: #64748b;
+      --nav-bg: rgba(255, 255, 255, 0.9);
+      --card-hover: #f1f5f9;
+      --shadow-sm: 0 1px 3px rgba(0,0,0,0.05);
+      --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.05), 0 2px 4px -1px rgba(0,0,0,0.03);
     }
 
     * {
@@ -49,13 +52,14 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
+      box-shadow: var(--shadow-sm);
     }
 
     .brand {
       font-weight: 800;
       font-size: 1.2rem;
       letter-spacing: -0.5px;
-      color: #fff;
+      color: var(--text);
       display: flex;
       align-items: center;
       gap: 0.5rem;
@@ -75,7 +79,7 @@
       color: var(--text-muted);
       text-decoration: none;
       font-size: 0.9rem;
-      font-weight: 500;
+      font-weight: 600;
       transition: all 0.3s ease;
     }
 
@@ -101,11 +105,11 @@
       display: inline-block;
       padding: 0.35rem 1rem;
       background: var(--accent-glow);
-      border: 1px solid rgba(16, 185, 129, 0.3);
+      border: 1px solid rgba(13, 148, 136, 0.3);
       color: var(--accent);
       border-radius: 50px;
       font-size: 0.85rem;
-      font-weight: 600;
+      font-weight: 700;
       margin-bottom: 1.5rem;
     }
 
@@ -115,6 +119,7 @@
       letter-spacing: -1px;
       margin-bottom: 1rem;
       line-height: 1.2;
+      color: var(--text);
     }
 
     .hero p {
@@ -138,11 +143,13 @@
       border-radius: 12px;
       padding: 1.5rem;
       text-align: center;
-      transition: transform 0.3s ease;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      box-shadow: var(--shadow-sm);
     }
 
     .metric-card:hover {
       transform: translateY(-5px);
+      box-shadow: var(--shadow-md);
     }
 
     .metric-num {
@@ -155,7 +162,7 @@
     .metric-label {
       font-size: 0.85rem;
       color: var(--text-muted);
-      font-weight: 500;
+      font-weight: 600;
     }
 
     /* Section Styling */
@@ -166,8 +173,9 @@
 
     .section-title {
       font-size: 2rem;
-      font-weight: 700;
+      font-weight: 800;
       margin-bottom: 0.5rem;
+      color: var(--text);
     }
 
     .section-sub {
@@ -188,17 +196,20 @@
       border: 1px solid var(--card-border);
       border-radius: 16px;
       padding: 2rem;
-      transition: background 0.3s ease;
+      transition: background 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+      box-shadow: var(--shadow-sm);
     }
 
     .initiative-card:hover {
-      background: var(--card-hover);
+      background: var(--card-bg);
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-md);
     }
 
     .initiative-title {
       font-size: 1.3rem;
       font-weight: 700;
-      color: #fff;
+      color: var(--text);
       margin-bottom: 0.75rem;
     }
 
@@ -248,11 +259,13 @@
       border: 1px solid var(--card-border);
       border-radius: 12px;
       padding: 1.5rem;
+      box-shadow: var(--shadow-sm);
     }
 
     .resource-card h4 {
       font-size: 1.1rem;
       margin-bottom: 0.5rem;
+      color: var(--text);
     }
 
     .resource-card p {
@@ -265,16 +278,16 @@
       display: inline-block;
       padding: 0.5rem 1rem;
       background: var(--accent);
-      color: #000;
+      color: #ffffff;
       text-decoration: none;
       font-size: 0.85rem;
       font-weight: 700;
       border-radius: 6px;
-      transition: opacity 0.3s ease;
+      transition: background 0.3s ease;
     }
 
     .btn:hover {
-      opacity: 0.9;
+      background: var(--accent-hover);
     }
 
     /* Officers Section */
@@ -290,6 +303,7 @@
       border-radius: 12px;
       padding: 1.5rem;
       text-align: center;
+      box-shadow: var(--shadow-sm);
     }
 
     .officer-role {
@@ -304,7 +318,7 @@
     .officer-name {
       font-size: 1.1rem;
       font-weight: 700;
-      color: #fff;
+      color: var(--text);
       margin-bottom: 0.25rem;
     }
 
@@ -319,11 +333,12 @@
       text-align: center;
       color: var(--text-muted);
       font-size: 0.9rem;
+      background: #ffffff;
       border-top: 1px solid var(--card-border);
     }
 
     footer strong {
-      color: #fff;
+      color: var(--text);
     }
   </style>
 </head>
@@ -386,7 +401,7 @@
         </div>
         <div class="initiative-card">
           <div class="initiative-title">Resource Development & Web Platform</div>
-          <div class="initiative-desc">Creating open-source study guides, interactive diagnostic tools, and anatomical summary sheets accessible to all HCHS students preparing for advanced biology.</div>
+          <div class="initiative-desc">Creating open-source study guides, interactive diagnostic tools, and biological summary sheets accessible to all HCHS students preparing for advanced biology.</div>
         </div>
       </div>
     </div>
@@ -401,18 +416,20 @@
       <div class="tabs">
         <button class="tab-btn active" onclick="switchTab('study')">Study Modules</button>
         <button class="tab-btn" onclick="switchTab('exams')">Past Exams</button>
-        <button class="tab-btn" onclick="switchTab('guides')">Anatomy Guides</button>
+        <button class="tab-btn" onclick="switchTab('guides')">Study Guides</button>
       </div>
 
       <div class="tab-content active" id="tab-study">
         <div class="resource-card">
           <h4>Cellular & Molecular Biology</h4>
           <p>Deep dive into metabolic pathways, enzyme kinetics, and molecular genetics core topics.</p>
+          <!-- Replace '#' with your actual Google Drive link or file link later -->
           <a href="#" class="btn">View Module</a>
         </div>
         <div class="resource-card">
           <h4>Plant Anatomy & Physiology</h4>
           <p>Comprehensive breakdown of transport systems, plant hormones, and structural adaptations.</p>
+          <!-- Replace '#' with your actual Google Drive link or file link later -->
           <a href="#" class="btn">View Module</a>
         </div>
       </div>
@@ -421,6 +438,7 @@
         <div class="resource-card">
           <h4>USABO Open Exams Archive</h4>
           <p>Access categorized past examination papers along with detailed solutions and analysis.</p>
+          <!-- Replace '#' with your actual Google Drive link or file link later -->
           <a href="#" class="btn">Access Archive</a>
         </div>
       </div>
@@ -429,6 +447,7 @@
         <div class="resource-card">
           <h4>Cardiovascular System Quick-Ref</h4>
           <p>Systemic circulation pathways, cardiac action potentials, and structural dissection guides.</p>
+          <!-- Replace '#' with your actual Google Drive link or file link later -->
           <a href="#" class="btn">Download Guide</a>
         </div>
       </div>
@@ -449,8 +468,8 @@
         </div>
         <div class="officer-card">
           <div class="officer-role">Vice President</div>
-          <div class="officer-name">To Be Elected</div>
-          <div class="officer-grade">Fall Election</div>
+          <div class="officer-name">Helen Grel</div>
+          <div class="officer-grade">10th Grade</div>
         </div>
         <div class="officer-card">
           <div class="officer-role">Secretary</div>
@@ -474,7 +493,7 @@
   <!-- Footer -->
   <footer>
     <div class="container">
-      <p>&copy; 2026 HCHS USABO Club. Founded & Directed by <strong>Dharun Mruthva Ganesh Kumar</strong> (10th Grade, Health Careers High School).</p>
+      <p>&copy; 2026 HCHS USABO Club. Founded & Directed by <strong>Dharun Mruthva Ganesh Kumar</strong> & <strong>Helen Grel</strong> (Health Careers High School).</p>
     </div>
   </footer>
 
