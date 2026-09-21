@@ -1,225 +1,491 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HCHS USABO Club Portal</title>
-    <style>
-        :root {
-            --primary: #1a365d;
-            --secondary: #2b6cb0;
-            --accent: #319795;
-            --bg: #f7fafc;
-            --card-bg: #ffffff;
-            --text: #2d3748;
-            --light-bg: #ebf8ff;
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HCHS USABO Club | Health Careers High School</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0b0f19;
+      --card-bg: rgba(17, 24, 39, 0.7);
+      --card-border: rgba(255, 255, 255, 0.08);
+      --accent: #10b981;
+      --accent-glow: rgba(16, 185, 129, 0.15);
+      --text: #f3f4f6;
+      --text-muted: #9ca3af;
+      --nav-bg: rgba(11, 15, 25, 0.85);
+      --card-hover: rgba(31, 41, 55, 0.8);
+    }
 
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-        }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      scroll-behavior: smooth;
+    }
 
-        body {
-            background-color: var(--bg);
-            color: var(--text);
-            line-height: 1.6;
-            overflow-x: hidden;
-        }
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
 
-        header {
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            color: white;
-            padding: 3rem 1.5rem;
-            text-align: center;
-        }
+    /* Top Navigation */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 1000;
+      background: var(--nav-bg);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--card-border);
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
 
-        header h1 {
-            font-size: 2.2rem;
-            margin-bottom: 0.5rem;
-        }
+    .brand {
+      font-weight: 800;
+      font-size: 1.2rem;
+      letter-spacing: -0.5px;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
 
-        header p {
-            font-size: 1.1rem;
-            opacity: 0.9;
-        }
+    .brand span {
+      color: var(--accent);
+    }
 
-        .container {
-            max-width: 1000px;
-            margin: 0 auto;
-            padding: 2rem 1rem;
-        }
+    .nav-links {
+      display: flex;
+      gap: 1.5rem;
+      list-style: none;
+    }
 
-        /* Scroll-Reveal Animation */
-        .reveal {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.8s ease-out;
-        }
+    .nav-links a {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 500;
+      transition: all 0.3s ease;
+    }
 
-        .reveal.active {
-            opacity: 1;
-            transform: translateY(0);
-        }
+    .nav-links a:hover {
+      color: var(--accent);
+    }
 
-        .card {
-            background: var(--card-bg);
-            border-radius: 8px;
-            padding: 1.8rem;
-            margin-bottom: 2rem;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-            border-top: 4px solid var(--secondary);
-        }
+    /* Container */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
 
-        h2 {
-            color: var(--primary);
-            margin-bottom: 1rem;
-            font-size: 1.5rem;
-        }
+    /* Hero Section */
+    .hero {
+      padding: 9rem 0 5rem;
+      text-align: center;
+      position: relative;
+    }
 
-        .squad-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 1.5rem;
-            margin-top: 1rem;
-        }
+    .hero-badge {
+      display: inline-block;
+      padding: 0.35rem 1rem;
+      background: var(--accent-glow);
+      border: 1px solid rgba(16, 185, 129, 0.3);
+      color: var(--accent);
+      border-radius: 50px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      margin-bottom: 1.5rem;
+    }
 
-        .squad-card {
-            background: var(--light-bg);
-            padding: 1.2rem;
-            border-radius: 6px;
-            border-left: 4px solid var(--accent);
-        }
+    .hero h1 {
+      font-size: 3rem;
+      font-weight: 800;
+      letter-spacing: -1px;
+      margin-bottom: 1rem;
+      line-height: 1.2;
+    }
 
-        .squad-card h3 {
-            color: var(--primary);
-            margin-bottom: 0.5rem;
-        }
+    .hero p {
+      max-width: 700px;
+      margin: 0 auto 2.5rem;
+      color: var(--text-muted);
+      font-size: 1.1rem;
+    }
 
-        .quiz-option {
-            display: block;
-            width: 100%;
-            padding: 0.75rem;
-            margin: 0.5rem 0;
-            background: #edf2f7;
-            border: 1px solid #cbd5e0;
-            border-radius: 4px;
-            text-align: left;
-            cursor: pointer;
-            transition: background 0.2s;
-        }
+    /* Metrics Grid */
+    .metrics-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.5rem;
+      margin-top: 3rem;
+    }
 
-        .quiz-option:hover {
-            background: #e2e8f0;
-        }
+    .metric-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 12px;
+      padding: 1.5rem;
+      text-align: center;
+      transition: transform 0.3s ease;
+    }
 
-        .quiz-option.correct {
-            background: #c6f6d5;
-            border-color: #38a169;
-        }
+    .metric-card:hover {
+      transform: translateY(-5px);
+    }
 
-        .quiz-option.incorrect {
-            background: #fed7d7;
-            border-color: #e53e3e;
-        }
+    .metric-num {
+      font-size: 2.2rem;
+      font-weight: 800;
+      color: var(--accent);
+      margin-bottom: 0.25rem;
+    }
 
-        #quiz-feedback {
-            margin-top: 1rem;
-            font-weight: bold;
-        }
+    .metric-label {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      font-weight: 500;
+    }
 
-        footer {
-            text-align: center;
-            padding: 2rem;
-            background: var(--primary);
-            color: white;
-            margin-top: 3rem;
-        }
-    </style>
+    /* Section Styling */
+    section {
+      padding: 5rem 0;
+      border-bottom: 1px solid var(--card-border);
+    }
+
+    .section-title {
+      font-size: 2rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+    }
+
+    .section-sub {
+      color: var(--text-muted);
+      margin-bottom: 3rem;
+      font-size: 1rem;
+    }
+
+    /* What We Do Cards */
+    .initiatives-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+    }
+
+    .initiative-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 16px;
+      padding: 2rem;
+      transition: background 0.3s ease;
+    }
+
+    .initiative-card:hover {
+      background: var(--card-hover);
+    }
+
+    .initiative-title {
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 0.75rem;
+    }
+
+    .initiative-desc {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+    }
+
+    /* Tabbed Resources Section */
+    .tabs {
+      display: flex;
+      gap: 1rem;
+      margin-bottom: 2rem;
+      border-bottom: 1px solid var(--card-border);
+      padding-bottom: 0.5rem;
+    }
+
+    .tab-btn {
+      background: none;
+      border: none;
+      color: var(--text-muted);
+      font-family: inherit;
+      font-size: 1rem;
+      font-weight: 600;
+      padding: 0.5rem 1rem;
+      cursor: pointer;
+      transition: color 0.3s ease;
+    }
+
+    .tab-btn.active {
+      color: var(--accent);
+      border-bottom: 2px solid var(--accent);
+    }
+
+    .tab-content {
+      display: none;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .tab-content.active {
+      display: grid;
+    }
+
+    .resource-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 12px;
+      padding: 1.5rem;
+    }
+
+    .resource-card h4 {
+      font-size: 1.1rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .resource-card p {
+      color: var(--text-muted);
+      font-size: 0.85rem;
+      margin-bottom: 1rem;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 0.5rem 1rem;
+      background: var(--accent);
+      color: #000;
+      text-decoration: none;
+      font-size: 0.85rem;
+      font-weight: 700;
+      border-radius: 6px;
+      transition: opacity 0.3s ease;
+    }
+
+    .btn:hover {
+      opacity: 0.9;
+    }
+
+    /* Officers Section */
+    .officers-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .officer-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 12px;
+      padding: 1.5rem;
+      text-align: center;
+    }
+
+    .officer-role {
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--accent);
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+    }
+
+    .officer-name {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 0.25rem;
+    }
+
+    .officer-grade {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+
+    /* Footer */
+    footer {
+      padding: 3rem 0;
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      border-top: 1px solid var(--card-border);
+    }
+
+    footer strong {
+      color: #fff;
+    }
+  </style>
 </head>
 <body>
 
-    <header>
-        <h1>Health Careers High School USABO Club</h1>
-        <p>Advanced Life-Science Mastery & Competitive Biology Preparation</p>
-    </header>
+  <!-- Top Navigation -->
+  <nav>
+    <div class="brand">HCHS <span>USABO</span></div>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#initiatives">What We Do</a></li>
+      <li><a href="#resources">Resources</a></li>
+      <li><a href="#officers">Leadership</a></li>
+    </ul>
+  </nav>
 
+  <!-- Hero Section -->
+  <header class="hero" id="about">
     <div class="container">
-        
-        <section class="card reveal">
-            <h2>Mission & Purpose</h2>
-            <p>The HCHS USA Biology Olympiad Club is dedicated to fostering deep life-science literacy, critical analytical thinking, and research competence. Our mission is to prepare students for national biological competitions, promote health literacy within our community, and support future clinical and academic scientific leadership.</p>
-        </section>
-
-        <section class="card reveal">
-            <h2>Operational Task Forces</h2>
-            <div class="squad-grid">
-                <div class="squad-card">
-                    <h3>USABO Contest Squad</h3>
-                    <p>Focuses on Campbell Biology mastery, high-yield practice exam breakdowns, and advanced problem-solving techniques.</p>
-                </div>
-                <div class="squad-card">
-                    <h3>Health Literacy Squad</h3>
-                    <p>Drives community impact through regional health education initiatives, workshops, and science outreach.</p>
-                </div>
-                <div class="squad-card">
-                    <h3>Resource & Web Squad</h3>
-                    <p>Curates open-source study repositories, maintains digital problem sets, and archives guest lecture materials.</p>
-                </div>
-            </div>
-        </section>
-
-        <section class="card reveal">
-            <h2>Interactive Practice Workshop</h2>
-            <p><strong>Sample Question:</strong> Which organelle is primarily responsible for lipid synthesis and drug detoxification in eukaryotic cells?</p>
-            <div id="quiz">
-                <button class="quiz-option" onclick="checkAnswer(this, false)">A) Rough Endoplasmic Reticulum</button>
-                <button class="quiz-option" onclick="checkAnswer(this, true)">B) Smooth Endoplasmic Reticulum</button>
-                <button class="quiz-option" onclick="checkAnswer(this, false)">C) Golgi Apparatus</button>
-                <button class="quiz-option" onclick="checkAnswer(this, false)">D) Lysosome</button>
-            </div>
-            <div id="quiz-feedback"></div>
-        </section>
-
+      <div class="hero-badge">Health Careers High School Chapter</div>
+      <h1>USA Biology Olympiad & Life Science Excellence</h1>
+      <p>Fostering advanced life-science mastery, analytical research capabilities, and community health literacy to develop the next generation of medical innovators.</p>
+      
+      <!-- Metrics Dashboard -->
+      <div class="metrics-grid">
+        <div class="metric-card">
+          <div class="metric-num">100%</div>
+          <div class="metric-label">USABO Open Participation Goal</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-num">10+</div>
+          <div class="metric-label">Target Semifinalist Qualifiers</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-num">200+</div>
+          <div class="metric-label">Community Outreach Target</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-num">100%</div>
+          <div class="metric-label">Open-Access Curricula</div>
+        </div>
+      </div>
     </div>
+  </header>
 
-    <footer>
-        <p>&copy; Health Careers High School USABO Chapter. All rights reserved.</p>
-    </footer>
+  <!-- What We Do -->
+  <section id="initiatives">
+    <div class="container">
+      <h2 class="section-title">What We Do</h2>
+      <p class="section-sub">Our core initiatives designed to drive high academic rigor and measurable community impact.</p>
+      
+      <div class="initiatives-grid">
+        <div class="initiative-card">
+          <div class="initiative-title">USABO Contest Preparation</div>
+          <div class="initiative-desc">Structured weekly workshops dissecting Campbell Biology, analytical problem-solving, and former USABO Open Exam questions to maximize student performance in national competitions.</div>
+        </div>
+        <div class="initiative-card">
+          <div class="initiative-title">Health Literacy Initiatives</div>
+          <div class="initiative-desc">Student-led community education programs focused on preventive medicine, cardiovascular health awareness, and basic biological literacy for middle school and local communities.</div>
+        </div>
+        <div class="initiative-card">
+          <div class="initiative-title">Resource Development & Web Platform</div>
+          <div class="initiative-desc">Creating open-source study guides, interactive diagnostic tools, and anatomical summary sheets accessible to all HCHS students preparing for advanced biology.</div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-    <script>
-        // Scroll Reveal Observer
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('active');
-                }
-            });
-        }, { threshold: 0.1 });
+  <!-- Interactive Resources -->
+  <section id="resources">
+    <div class="container">
+      <h2 class="section-title">Study Resources & Materials</h2>
+      <p class="section-sub">Curated academic preparation modules for members.</p>
+      
+      <div class="tabs">
+        <button class="tab-btn active" onclick="switchTab('study')">Study Modules</button>
+        <button class="tab-btn" onclick="switchTab('exams')">Past Exams</button>
+        <button class="tab-btn" onclick="switchTab('guides')">Anatomy Guides</button>
+      </div>
 
-        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+      <div class="tab-content active" id="tab-study">
+        <div class="resource-card">
+          <h4>Cellular & Molecular Biology</h4>
+          <p>Deep dive into metabolic pathways, enzyme kinetics, and molecular genetics core topics.</p>
+          <a href="#" class="btn">View Module</a>
+        </div>
+        <div class="resource-card">
+          <h4>Plant Anatomy & Physiology</h4>
+          <p>Comprehensive breakdown of transport systems, plant hormones, and structural adaptations.</p>
+          <a href="#" class="btn">View Module</a>
+        </div>
+      </div>
 
-        // Interactive Quiz Logic
-        function checkAnswer(button, isCorrect) {
-            const feedback = document.getElementById('quiz-feedback');
-            const options = document.querySelectorAll('.quiz-option');
-            
-            options.forEach(opt => {
-                opt.disabled = true;
-            });
+      <div class="tab-content" id="tab-exams">
+        <div class="resource-card">
+          <h4>USABO Open Exams Archive</h4>
+          <p>Access categorized past examination papers along with detailed solutions and analysis.</p>
+          <a href="#" class="btn">Access Archive</a>
+        </div>
+      </div>
 
-            if (isCorrect) {
-                button.classList.add('correct');
-                feedback.style.color = '#2f855a';
-                feedback.innerText = 'Correct! The Smooth Endoplasmic Reticulum handles lipid synthesis and metabolism of xenobiotics.';
-            } else {
-                button.classList.add('incorrect');
-                feedback.style.color = '#c53030';
-                feedback.innerText = 'Incorrect. The correct answer is B) Smooth Endoplasmic Reticulum.';
-            }
-        }
-    </script>
+      <div class="tab-content" id="tab-guides">
+        <div class="resource-card">
+          <h4>Cardiovascular System Quick-Ref</h4>
+          <p>Systemic circulation pathways, cardiac action potentials, and structural dissection guides.</p>
+          <a href="#" class="btn">Download Guide</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Leadership Section -->
+  <section id="officers">
+    <div class="container">
+      <h2 class="section-title">Club Leadership</h2>
+      <p class="section-sub">Executive board governing the HCHS USABO organization.</p>
+      
+      <div class="officers-grid">
+        <div class="officer-card">
+          <div class="officer-role">President</div>
+          <div class="officer-name">Dharun Mruthva Ganesh Kumar</div>
+          <div class="officer-grade">10th Grade</div>
+        </div>
+        <div class="officer-card">
+          <div class="officer-role">Vice President</div>
+          <div class="officer-name">To Be Elected</div>
+          <div class="officer-grade">Fall Election</div>
+        </div>
+        <div class="officer-card">
+          <div class="officer-role">Secretary</div>
+          <div class="officer-name">To Be Elected</div>
+          <div class="officer-grade">Fall Election</div>
+        </div>
+        <div class="officer-card">
+          <div class="officer-role">Treasurer</div>
+          <div class="officer-name">To Be Elected</div>
+          <div class="officer-grade">Fall Election</div>
+        </div>
+        <div class="officer-card">
+          <div class="officer-role">Dir. of Academic Prep</div>
+          <div class="officer-name">To Be Elected</div>
+          <div class="officer-grade">Fall Election</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <p>&copy; 2026 HCHS USABO Club. Founded & Directed by <strong>Dharun Mruthva Ganesh Kumar</strong> (10th Grade, Health Careers High School).</p>
+    </div>
+  </footer>
+
+  <script>
+    function switchTab(tabId) {
+      document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+      document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
+      
+      event.target.classList.add('active');
+      document.getElementById('tab-' + tabId).classList.add('active');
+    }
+  </script>
 </body>
 </html>
